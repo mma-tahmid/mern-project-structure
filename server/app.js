@@ -65,16 +65,27 @@ let OPTION = { autoIndex: true };
 
 
 
-mongoose.connect(process.env.DATABASE_URI, OPTION)
-    .then((res) => {
-        console.log("MongoDB Connected Successfully")
+// mongoose.connect(process.env.DATABASE_URI, OPTION)
+//     .then((res) => {
+//         console.log("MongoDB Connected Successfully")
 
-    })
+//     })
 
-    .catch((error) => {
-        console.log(error)
+//     .catch((error) => {
+//         console.log(error)
 
-    })
+//     })
+
+const connectDB = async () => {
+    try {
+        const res = await mongoose.connect(process.env.DATABASE_URI, OPTION);
+        console.log("MongoDB Connected Successfully");
+    } catch (error) {
+        console.error("MongoDB Connection Failed", error);
+    }
+};
+
+connectDB();
 
 
 // 9. Backend Routing Implement
